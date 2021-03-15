@@ -1,10 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import GetRockets from '../components/GetData/GetRockets';
+import TopBar from '../components/TopBar'
 
 export class Rockets extends Component {
     render(){
         return(
-            <GetRockets/>
+            <Fragment>
+                <TopBar name="Foguetes"/>
+                <GetRockets/>
+            </Fragment>
         )
     }
 }

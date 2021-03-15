@@ -174,12 +174,86 @@ export const Menu = styled.menu`
 `;
 
 
+export const TopBar = styled.div`
+    display: flex;
+    justify-content: space-between;
+    h1{
+        color: #fff;
+    }
+    .content{
+        display:flex;
+        justify-content:flex-end;
+        width: 100%;
+        max-width: 60%;
+        .searchContent{
+            position: relative;
+            z-index: 1;
+            width: 50%;
+            display: flex;
+            align-items: stretch;
+
+            input{
+                background: #fff;
+                border-radius: 5px 0 0 5px;
+                position: relative;
+                z-index: 1;
+                border: unset;
+                box-shadow: none;
+                outline: none;
+                padding: 8px;
+                width: 100%
+            }
+            &:after{
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                right: -5px;
+                z-index: -1;
+                border-radius: 5px;
+
+                background: #9D50BB;
+                background: -webkit-linear-gradient(to left, #6E48AA, #9D50BB);
+                background: linear-gradient(to left, #6E48AA, #9D50BB);
+                
+                width: calc( 100% - 5px );
+                height: calc( 100% - 5px );
+            }
+            .bt-search{
+                background: #fff;
+                border-radius: 0 5px 5px 0;
+                width: 40px;
+                padding: 8px;
+                height: 100%;
+                svg{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        
+    }
+`;
+
 export const InfoContent = styled.div`
     height: 100vh;
     background: rgba(18,18,20,1);
     padding: 25px 8%;
     overflow: hidden auto;
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
 
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: #52c234;
+        background: -webkit-linear-gradient(to bottom, #061700, #52c234);
+        background: linear-gradient(to bottom, #061700, #52c234);
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
 `;
 
 export const CardList = styled.ul`
@@ -193,17 +267,59 @@ export const Card = styled.li`
     margin: 30px 0;
     position: relative;
     z-index: 1;
-    div{
+    div.content{
         padding: 40px;
         display: flex;
-        justify-content: space-evenly;
+        flex-wrap: wrap;
+        justify-content: space-between;
         align-items: stretch;
         background-color: #212025;
         border-radius: 5px;
         color: #fff;
         box-shadow: 2px 2px 5px -3px #fff;
         z-index: 2;
+
+        .bt-more-info{
+            position:absolute;
+            bottom: 20px;
+            right: 20px;
+            color: #52c234;
+            cursor: pointer;
+            text-decoration:underline;
+        }
+
+        .more-info{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-height: 0;
+            overflow: hidden;
+            transition: all .3s ease-out;
+            .description{
+                display: block
+            }
+        }
     }
+
+
+    &.show-info{
+        .content{
+            .bt-more-info{
+                font-size: 0px;
+                color: #f47230;
+                &:after{
+                    content: 'Ver menos';
+                    color: #f47230;
+                    font-size: 16px;
+                }
+            }
+            .more-info{
+                margin-top: 20px;
+                max-height: 300px;
+            }
+        }
+    }
+
     &:after{
         content: "";
         position: absolute;
@@ -229,7 +345,5 @@ export const Card = styled.li`
             max-width: calc( 100% - 10px );
         }
     }
+
 `;
-
-
-
