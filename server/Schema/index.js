@@ -1,21 +1,23 @@
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLSchema, GraphQLInt, GraphQLString, GraphQLList } = graphql;
 
-const userData = require("../json/MOCK_DATA.json");
+const crewData = require("../json/Crew.json");
 const rocketData = require("../json/Rocket.json");
+const launchesData = require("../json/Launches.json");
 
-const UserType = require("./TypeDefs/UserType");
+const CrewType = require("./TypeDefs/CrewType");
 const RocketType = require('./TypeDefs/RocketType');
+const LaunchesType = require('./TypeDefs/LaunchesType');
 
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
-    getAllUsers: {
-      type: new GraphQLList(UserType),
+    getAllCrew: {
+      type: new GraphQLList(CrewType),
       args: { id: { type: GraphQLInt } },
       resolve(parent, args) {
-        return userData;
+        return crewData;
       },
     },
     getAllRockets: {
@@ -25,11 +27,19 @@ const RootQuery = new GraphQLObjectType({
         return rocketData;
       },
     },
+    getAllLaunches: {
+      type: new GraphQLList(LaunchesType),
+      args: { id: { type: GraphQLString } },
+      resolve(parent, args) {
+        return launchesData;
+      },
+    },
     getRocket: {
       type: new GraphQLList(RocketType),
       args: { id: { type: GraphQLString } },
       resolve(parent, args) {
-        return (rocketData.filter(res => res.id = args))
+        return (rocketData
+          .then(res => res.rocketData.get(`${args.id}`)))
       },
     },
   },
@@ -39,20 +49,22 @@ const Mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
     createUser: {
-      type: UserType,
+      type: CrewType,
       args: {
-        firstName: { type: GraphQLString },
-        lastName: { type: GraphQLString },
-        email: { type: GraphQLString },
-        password: { type: GraphQLString },
+        name: { type: GraphQLString },
+        agency: { type: GraphQLString },
+        image: { type: GraphQLString },
+        wikipedia: { type: GraphQLString },
+        status:{type: GraphQLString },
       },
       resolve(parent, args) {
-        userData.push({
-          id: userData.length + 1,
-          firstName: args.firstName,
-          lastName: args.lastName,
-          email: args.email,
-          password: args.password,
+        crewData.push({
+          id: crewData.length + 1,
+          name: args.name,
+          agency: args.agency,
+          image: args.image,
+          wikipedia: args.wikipedia,
+          status: args.status,
         });
         return args;
       },

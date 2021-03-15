@@ -1,16 +1,16 @@
 import React, { Component, Fragment } from 'react';
-import GetRockets from '../components/GetData/GetRockets';
+import GetCrew from '../components/GetData/GetCrew';
 import TopBar from '../components/TopBar'
 
-export class Rockets extends Component {
+export class Crew extends Component {
     render(){
         return(
             <Fragment>
-                <TopBar name="Foguetes"/>
-                <GetRockets/>
+                <TopBar name="Pessoas da Equipe"/>
+                <GetCrew/>
             </Fragment>
         )
     }
 }
 
-export default Rockets;
+export default Crew;

@@ -18,10 +18,14 @@ function GetRockets() {
       {rockets.map((val) => {
         return <Card key={val.id} id={val.id}>
             <div className="content">
-              <h2>{val.name}</h2>
+              <h2 className="title">{val.name}</h2>
+              <span>Altura de { val.height.meters }m</span>
+              <span>Diametro de { val.diameter.meters }m</span>
+              <span>Local: { val.country } </span>
               <span className="bt-more-info" onClick={() => showInfo(val.id)}>Ver mais</span>
               <div className="more-info">
                 <div className='description'>{val.description}</div>
+                <p>Empresa {val.company}</p>
               </div>
             </div>
           </Card>

@@ -1,22 +1,24 @@
 import React, { useState } from "react";
-import { CREATE_USER_MUTATION } from "../graphQL/Mutations";
+import { CREATE_CREW_MUTATION } from "../graphQL/Mutations";
 import { useMutation } from "@apollo/client";
 
 function Form() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setname] = useState("");
+  const [agency, setagency] = useState("");
+  const [image, setimage] = useState("");
+  const [wikipedia, setwikipedia] = useState("");
+  const [status, setstatus] = useState("");
 
-  const [createUser, { error }] = useMutation(CREATE_USER_MUTATION);
+  const [createCrew, { error }] = useMutation(CREATE_Crew_MUTATION);
 
-  const addUser = () => {
-    createUser({
+  const addCrew = () => {
+    createCrew({
       variables: {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
+        name: name,
+        agency: agency,
+        image: image,
+        wikipedia: wikipedia,
+        status: status,
       },
     });
 
@@ -30,31 +32,38 @@ function Form() {
         type="text"
         placeholder="First Name"
         onChange={(e) => {
-          setFirstName(e.target.value);
+          setname(e.target.value);
         }}
       />
       <input
         type="text"
         placeholder="Last Name"
         onChange={(e) => {
-          setLastName(e.target.value);
+          setagency(e.target.value);
         }}
       />
       <input
         type="text"
-        placeholder="Email"
+        placeholder="image"
         onChange={(e) => {
-          setEmail(e.target.value);
+          setimage(e.target.value);
         }}
       />
       <input
         type="text"
-        placeholder="Password"
+        placeholder="wikipedia"
         onChange={(e) => {
-          setPassword(e.target.value);
+          setwikipedia(e.target.value);
         }}
       />
-      <button onClick={addUser}> Create User</button>
+      <input
+        type="text"
+        placeholder="status"
+        onChange={(e) => {
+          setstatus(e.target.value);
+        }}
+      />
+      <button onClick={addCrew}> Create Crew</button>
     </div>
   );
 }

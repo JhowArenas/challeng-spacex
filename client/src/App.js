@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Menu from './components/Menu';
 import Main from './pages/Main';
-// import Launches from './Pages/Launches';
-// import Crew from './Pages/Crew';
+import Launches from './pages/Launches';
+import Crew from './pages/Crew';
 import Rockets from './pages/Rockets';
 // import NewLaunches from './Pages/NewLaunches';
 
@@ -40,9 +40,9 @@ class App extends Component {
             <Menu />
             <InfoContent>
               <Route exact path="/" component={Main} />
-              {/* <Route exact path="/lancamentos" component={Launches} />  */}
+              <Route exact path="/lancamentos" component={Launches} /> 
               <Route exact path="/foguetes" component={Rockets} />
-              {/* <Route exact path="/equipe" component={Crew} /> */}
+              <Route exact path="/equipe" component={Crew} />
               {/* <Route exact path="/novos-lancamentos" component={NewLaunches} /> */}
             </InfoContent>
           </BodyContainer>

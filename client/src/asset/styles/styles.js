@@ -9,6 +9,7 @@ export const BodyContainer = styled.div`
 
 export const Menu = styled.menu`
     max-width: 310px;
+    width: 310px;
     height: 100vh;
     margin: 0;
     padding: 0;
@@ -109,9 +110,9 @@ export const Menu = styled.menu`
         text-align: center;
         padding: 25px 0;
         border-bottom: 3px solid #fff;
-        img {
+        svg{
             max-width: 90%;
-            filter: invert();
+            fill: #fff;
         }
     }
 
@@ -266,9 +267,10 @@ export const Card = styled.li`
     width: 100%;
     margin: 30px 0;
     position: relative;
+    list-style: none;
     z-index: 1;
     div.content{
-        padding: 40px;
+        padding: 40px 40px 55px 40px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -278,11 +280,15 @@ export const Card = styled.li`
         color: #fff;
         box-shadow: 2px 2px 5px -3px #fff;
         z-index: 2;
-
+        .title{
+            color: #9D50BB;
+            width: 100%;
+            margin-bottom: 20px
+        }
         .bt-more-info{
             position:absolute;
-            bottom: 20px;
-            right: 20px;
+            bottom: 15px;
+            right: 40px;
             color: #52c234;
             cursor: pointer;
             text-decoration:underline;
@@ -298,12 +304,18 @@ export const Card = styled.li`
             .description{
                 display: block
             }
+            p {
+                margin: 10px 0;
+            }
         }
     }
 
 
     &.show-info{
         .content{
+            .title{
+                color:#52c234;
+            }
             .bt-more-info{
                 font-size: 0px;
                 color: #f47230;
@@ -317,6 +329,13 @@ export const Card = styled.li`
                 margin-top: 20px;
                 max-height: 300px;
             }
+        }
+        &:after, &:hover:after{    
+            background: #52c234;
+            background: -webkit-linear-gradient(to right,#061700,#52c234);
+            background: linear-gradient(to right,#061700,#52c234);
+            max-height: calc( 100% - 10px );
+            max-width: calc( 100% - 10px );
         }
     }
 
@@ -346,4 +365,88 @@ export const Card = styled.li`
         }
     }
 
+`;
+
+export const CardCrew = styled(Card)`
+    width: 300px;
+    margin: 30px 15px;
+    display: flex;
+    flex-direction: column;
+
+    .content{
+        align-items:center;
+        .img{
+            display:flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 220px;
+            height: 220px;
+            border-radius: 200px;
+            position: relative;
+            z-index: 1;
+            overflow:hidden;
+            img{ 
+                max-height: 140%;
+            }
+        }
+        a{
+            width: 100%;
+            text-align: center;
+            text-decoration: none!important;
+            h2{
+                color: #f47230;
+                margin: 20px 0;
+            }
+            *{
+                color: #fff;
+            }
+        }
+        &:before{
+                content:'';
+                position: absolute;
+                top: 35px;
+                left: 35px;
+                z-index: -1;    
+                width: 230px;
+                height: 0;
+                opacity: 0;
+                border-radius: 230px;
+                background: #FF512F;
+                background: -webkit-linear-gradient(to right,#F09819,#FF512F);
+                background: linear-gradient(to right,#F09819,#FF512F);
+                transition: opacity .3s ease-in-out;
+        }
+    }
+    &:hover{
+        .content{
+            a{
+                h2{
+                    color:#52c234;
+                }
+            }
+            &:before{
+                height: 230px;
+                opacity: 1;
+            }
+        }
+    }
+
+`;
+
+export const MainContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgb(50,39,80);
+    background: webkit-radial-gradient(circle, rgba(50,39,80,1) 0%, rgba(18,18,20,1) 50%);
+    background: radial-gradient(circle, rgba(50,39,80,1) 0%, rgba(18,18,20,1) 50%);
+    height: 100%;
+    h1{
+        color: #fff;
+        margin: 50px 0 20px 0
+    }
+    p{
+        color: #52c234;
+    }
 `;
